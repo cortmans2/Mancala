@@ -1,16 +1,9 @@
-# This is a sample Python script.
+class Player:
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+    def __init__(self, playerName, playerNum, gameboard): # initializes the players name and num
+        self.name = playerName
+        self.num = playerNum
+        self.gameboardReference = gameboard
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    def Move(self): # doesn't have to actually do anything, will always be overwritten in sublasses
+        return None
