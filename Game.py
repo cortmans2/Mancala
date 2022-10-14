@@ -26,6 +26,6 @@ class Game:
     def getPlayer1(self):
         return self.player1
 
-    def startTurn():
+    def startTurn():  # This is a method
         Move(index, direction, playerToMove)
         IsGameOver()
