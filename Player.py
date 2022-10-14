@@ -7,3 +7,4 @@ class Player:
 
     def Move(self): # doesn't have to actually do anything, will always be overwritten in sublasses
         return None
+    
