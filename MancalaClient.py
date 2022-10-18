@@ -1,5 +1,7 @@
 from Player import *
 from Human import *
+from Game import *
+from Gameboard import *
 
-player0 = Human("asdf", 0)
-player0.Move()
+game1 = Game()
+game1.startGame()

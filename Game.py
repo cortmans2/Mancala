@@ -1,14 +1,14 @@
-import Gameboard
-import Human
-import Player
+from Gameboard import *
+from Human import *
+from Player import *
 
 
 class Game:
-    def __init__(self, playerToMove, player0, player1):
-        self.playerToMove = playerToMove
+    def __init__(self):
         self.gameboard = Gameboard()
-        self.player0 = Player(playerName, 0, gameboard)
-        self.player1 = Player(playerName, 1, gameboard)
+        self.player0 = Human("placeholder1", 0, self.gameboard)
+        self.player1 = Human("placeholder2", 1, self.gameboard)
+        self.playerToMove = self.player0
 
 
     def getPlayerToMove(self):
@@ -23,6 +23,9 @@ class Game:
     def getPlayer1(self):
         return self.player1
 
-    def startTurn(self):
-        Move(index, direction, playerToMove)
-        IsGameOver()
+    def startGame(self):
+        while (self.gameboard.isGameOver() == -1):
+            self.playerToMove.Move()
+            # reverses which player will move next round
+            self.playerToMove = self.player1 if self.playerToMove.num == 0 else self.player0
+        print("The Game Is Over")
