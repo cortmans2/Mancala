@@ -21,26 +21,26 @@ class Gameboard:
         for i in range(count):
 
             if player == 0:
-                if direction == 0:
+                if direction == -1:
                     if current[1] < 0:
                         current = (1, 0)
                         direction = 1
                     current[1] -= 1
                 else:
-                    if current[1] > 7:
+                    if current[1] > 6:
                         current = (1, 7)
-                        direction = 0
+                        direction = -1
                     current[1] += 1
             else:
-                if direction == 0:
+                if direction == -1:
                     if current[1] < 0:
                         current = (0, 0)
                         direction = 1
                     current[1] -= 1
                 else:
-                    if current[1] > 7:
+                    if current[1] > 6:
                         current = (0, 7)
-                        direction = 0
+                        direction = -1
                     current[1] += 1
 
             if self.gameboard[current[0]][current[1]] is None:
