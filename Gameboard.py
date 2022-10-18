@@ -17,37 +17,44 @@ class Gameboard:
         count = self.gameboard[player][index]
         current = [player, index]
         self.gameboard[player][index] = 0
-
         for i in range(count):
 
             if player == 0:
                 if direction == -1:
                     if current[1] < 0:
-                        current = (1, 0)
+                        current = [1, 0]
                         direction = 1
-                    current[1] -= 1
+                    else:
+                        current[1] -= 1
                 else:
                     if current[1] > 6:
-                        current = (1, 7)
+                        current = [1, 7]
                         direction = -1
-                    current[1] += 1
+                    else:
+                        current[1] += 1
             else:
                 if direction == -1:
                     if current[1] < 0:
-                        current = (0, 0)
+                        current = [0, 0]
                         direction = 1
-                    current[1] -= 1
+                    else:
+                        current[1] -= 1
                 else:
                     if current[1] > 6:
-                        current = (0, 7)
+                        current = [0, 7]
                         direction = -1
-                    current[1] += 1
+                    else:
+                        current[1] += 1
 
             if self.gameboard[current[0]][current[1]] is None:
-                if current[0] == 0:
-                    current[1] += 1
+                if current[0] == 0 and direction == 1:
+                    current[1] = 0
+                elif current[0] == 0 and direction == -1:
+                    current[1] = 6
+                elif current[0] == 1 and direction == 1:
+                    current[1] = 1
                 else:
-                    current[1] -= 1
+                    current[1] = 7
 
             self.gameboard[current[0]][current[1]] += 1
             print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]))
