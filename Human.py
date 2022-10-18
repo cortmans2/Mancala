@@ -14,6 +14,7 @@ class Human(Player):
             print("Invalid Input. Index to move must be in the range of 1 - 6")
             self.Move()
 
+
         # Direction Input
         try:
             direction = 0
