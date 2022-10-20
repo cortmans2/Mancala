@@ -15,7 +15,7 @@ class Game:
         return self.playerToMove
 
     def getBoard(self):
-        return self.board
+        return self.gameboard
 
     def getPlayer0(self):
         return self.player0
@@ -28,4 +28,5 @@ class Game:
             self.playerToMove.Move()
             # reverses which player will move next round
             self.playerToMove = self.player1 if self.playerToMove.num == 0 else self.player0
+            #print("playerToMove: " + (str)(self.playerToMove.num))
         print("The Game Is Over")

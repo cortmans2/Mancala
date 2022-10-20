@@ -17,7 +17,12 @@ class Human(Player):
         except:
             print("Invalid Input. Index to move must be in the range of 1 - 6")
             self.Move()
+            return
 
+        if (self.gameboardReference.gameboard[int(self.num)][int(indexToMove)] == 0):
+            print("Invalid Input. You must select a pit with seeds in it")
+            self.Move()
+            return
 
         # Direction Input
         try:
@@ -27,5 +32,6 @@ class Human(Player):
         except:
             print("Invalid Input. Direction must be -1 or 1")
             self.Move()
+            return
 
         self.gameboardReference.sow( int(indexToMove), int(direction), int((self.num)))
