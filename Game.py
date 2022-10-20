@@ -24,6 +24,7 @@ class Game:
         return self.player1
 
     def startGame(self):
+        print(self.gameboard.isGameOver())
         while (self.gameboard.isGameOver() == -1):
             self.playerToMove.Move()
             # reverses which player will move next round

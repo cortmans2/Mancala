@@ -61,7 +61,32 @@ class Gameboard:
             print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
 
     def isGameOver(self):
-        return -1
+        # get how many seeds are in each player's row
+        player0RemainingSeeds = 0
+        for i in range(1, 7):
+            player0RemainingSeeds += self.gameboard[0][i]
+
+        player1RemainingSeeds = 0
+        for i in range(1, 7):
+            player1RemainingSeeds += self.gameboard[1][i]
+
+        print(player0RemainingSeeds , ", " , player1RemainingSeeds)
+
+        # return -1 if the game isn't over
+        if int(player0RemainingSeeds) > 0 and int(player1RemainingSeeds) > 0:
+            return -1
+        # otherwise return whoever has more in their store
+        self.gameboard[0][0] += player0RemainingSeeds
+        self.gameboard[1][7] += player1RemainingSeeds
+        if self.gameboard[0][0] > self.gameboard[1][7]:
+            return 0
+        else:
+            return 1
+
+
+
+
+
 
 #g1 = Gameboard()
 #print(g1)
