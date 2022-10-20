@@ -14,6 +14,7 @@ class Gameboard:
 
     def sow(self, index, direction, player):
 
+        print(index, direction, player)
         count = self.gameboard[(int)(player)][(int)(index)]
         current = [(int)(player), (int)(index)]
         self.gameboard[(int)(player)][(int)(index)] = 0
@@ -62,7 +63,6 @@ class Gameboard:
     def isGameOver(self):
         return -1
 
-#g1 = Gameboard()
-#print(g1)
-#g1.sow(3, 1, 1)
-#g1.sow(4, 1, 1)
+g1 = Gameboard()
+print(g1)
+g1.sow(6, -1, 0)
