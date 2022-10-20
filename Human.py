@@ -28,4 +28,4 @@ class Human(Player):
             print("Invalid Input. Direction must be -1 or 1")
             self.Move()
 
-        self.gameboardReference.sow(indexToMove, direction, (int)(self.num))
+        self.gameboardReference.sow( int(indexToMove), int(direction), int((self.num)))
