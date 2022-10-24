@@ -12,7 +12,7 @@ class Gameboard:
 
         return str(self.gameboard[0]) + "\n" + str(self.gameboard[1])
 
-    def sow(self, index, direction, player):
+    def sow(self, index, direction, player, playerCallbackReference):
 
         #print(index, direction, player)
         count = self.gameboard[(int)(player)][(int)(index)]
@@ -55,13 +55,19 @@ class Gameboard:
                 elif current[0] == 1 and direction == 1:
                     current[1] = 1
                 else:
-                    current[1] = 7
+                    current[0] = 7
 
             self.gameboard[current[0]][current[1]] += 1
             print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
 
+        # handle moving again, capturing
+        if current[1] == 0 or current[1] == 7:
+            print("MOVE AGAIN")
+            playerCallbackReference.Move()
+
+
     def isGameOver(self):
-        # get how many seeds are in each player's row
+        # get how many seeds are in each player's row (not store)
         player0RemainingSeeds = 0
         for i in range(1, 7):
             player0RemainingSeeds += self.gameboard[0][i]
@@ -70,7 +76,7 @@ class Gameboard:
         for i in range(1, 7):
             player1RemainingSeeds += self.gameboard[1][i]
 
-        print(player0RemainingSeeds , ", " , player1RemainingSeeds)
+        #print(player0RemainingSeeds , ", " , player1RemainingSeeds)
 
         # return -1 if the game isn't over
         if int(player0RemainingSeeds) > 0 and int(player1RemainingSeeds) > 0:

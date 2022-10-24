@@ -34,4 +34,5 @@ class Human(Player):
             self.Move()
             return
 
-        self.gameboardReference.sow( int(indexToMove), int(direction), int((self.num)))
+        self.gameboardReference.sow(int(indexToMove), int(direction), int(self.num), self)
+
