@@ -28,13 +28,11 @@ class Gameboard:
                 if direction == -1:  # Counterclockwise
                     if current[1] < 0:  # If the top left end is reached, set to the beginning of bottom row
                         current = [1, 0]
-                        direction = 1
                     else:  # If the top left end is not reached, continue counterclockwise
                         current[1] -= 1
                 else:  # Clockwise
                     if current[1] > 6:  # If the top right end is reached, set to the end of bottom row
                         current = [1, 7]
-                        direction = -1
                     else:  # If the top right end is not reached, continue clockwise
                         current[1] += 1
             else:  # Player one corresponds to starting from the bottom row
@@ -46,13 +44,11 @@ class Gameboard:
                 if direction == -1:  # Counterclockwise
                     if current[1] < 0:
                         current = [0, 0]
-                        direction = 1
                     else:
                         current[1] -= 1
                 else:  # Clockwise
                     if current[1] > 6:
                         current = [0, 7]
-                        direction = -1
                     else:
                         current[1] += 1
 
