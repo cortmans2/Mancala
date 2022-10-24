@@ -14,33 +14,42 @@ class Gameboard:
 
     def sow(self, index, direction, player, playerCallbackReference):
 
-        #print(index, direction, player)
         count = self.gameboard[(int)(player)][(int)(index)]
         current = [(int)(player), (int)(index)]
         self.gameboard[(int)(player)][(int)(index)] = 0
         for i in range(count):
 
-            if player == 0:
-                if direction == -1:
-                    if current[1] < 0:
+            if player == 0:  # Player zero corresponds to starting from the top row
+                if current == [0][0]:  # If player zero lands on player one's store, skip it
+                    if direction == 1:  # If approaching clockwise, set to the first hole in the top row
+                        current = [0][1]
+                    else:  # If approaching counterclockwise, set to the first hole in the bottom row
+                        current = [1][1]
+                if direction == -1:  # Counterclockwise
+                    if current[1] < 0:  # If the top left end is reached, set to the beginning of bottom row
                         current = [1, 0]
                         direction = 1
-                    else:
+                    else:  # If the top left end is not reached, continue counterclockwise
                         current[1] -= 1
-                else:
-                    if current[1] > 6:
+                else:  # Clockwise
+                    if current[1] > 6:  # If the top right end is reached, set to the end of bottom row
                         current = [1, 7]
                         direction = -1
-                    else:
+                    else:  # If the top right end is not reached, continue clockwise
                         current[1] += 1
-            else:
-                if direction == -1:
+            else:  # Player one corresponds to starting from the bottom row
+                if current == [1][7]:  # If player zero lands on player one's store, skip it
+                    if direction == 1:  # If approaching clockwise, set to the first hole in the top row
+                        current = [1][6]
+                    else:  # If approaching counterclockwise, set to the first hole in the bottom row
+                        current = [0][6]
+                if direction == -1:  # Counterclockwise
                     if current[1] < 0:
                         current = [0, 0]
                         direction = 1
                     else:
                         current[1] -= 1
-                else:
+                else:  # Clockwise
                     if current[1] > 6:
                         current = [0, 7]
                         direction = -1
@@ -64,7 +73,6 @@ class Gameboard:
         if current[1] == 0 or current[1] == 7:
             print("MOVE AGAIN")
             playerCallbackReference.Move()
-
 
 
     def isGameOver(self):
