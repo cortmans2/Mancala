@@ -23,11 +23,11 @@ class Game:
     def getPlayer1(self):
         return self.player1
 
-    def startGame(self):
+    def startGame(self):  # Starts game and does not stop until the game is over
         print(self.gameboard.isGameOver())
-        while (self.gameboard.isGameOver() == -1):
+        while (self.gameboard.isGameOver() == -1):  # Runs until game is over
             self.playerToMove.Move()
             # reverses which player will move next round
-            self.playerToMove = self.player1 if self.playerToMove.num == 0 else self.player0
+            self.playerToMove = self.player1 if self.playerToMove.num == 0 else self.player0  # switches players turn
             #print("playerToMove: " + (str)(self.playerToMove.num))
         print("The Game Is Over")
