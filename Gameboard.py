@@ -69,10 +69,26 @@ class Gameboard:
             self.gameboard[current[0]][current[1]] += 1
             print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
 
-        # handle moving again, capturing
+        # moving again functionality
         if current[1] == 0 or current[1] == 7:
             print("MOVE AGAIN")
             playerCallbackReference.Move()
+            return
+
+        # capturing functionality
+        if self.gameboard[current[0]][current[1]] == 1 and self.gameboard[0 if current[0] == 1 else 1][current[1]] != 0:
+            numSeeds = 1 + self.gameboard[0 if current[0] == 1 else 1][current[1]]
+            self.gameboard[current[0]][current[1]] = 0
+            self.gameboard[0 if current[0] == 1 else 1][current[1]] = 0
+
+            if int(player) == 0:
+                self.gameboard[0][0] += numSeeds
+            else:
+                self.gameboard[1][7] += numSeeds
+            print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
+            print("Captured", numSeeds, "Seeds")
+            return
+
 
 
     def isGameOver(self):
