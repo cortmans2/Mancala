@@ -40,15 +40,6 @@ class Gameboard:
                     current[1] -= 1
 
             print(str(current) + " Before add")
-            if self.gameboard[current[0]][current[1]] is None:
-                if current[0] == 0 and direction == 1:
-                    current = [1, 7]
-                elif current[0] == 0 and direction == -1:
-                    current = [1, 0]
-                elif current[0] == 1 and direction == 1:
-                    current = [0, 0]
-                else:
-                    current = [1, 1]
 
             if player == 0 and current == [1, 7]:  # If player zero lands on player one's store, skip it
                 if direction == 1:  # If approaching clockwise, set to the first hole in the top row
@@ -60,6 +51,16 @@ class Gameboard:
                     current = [0, 1]
                 else:  # If approaching counterclockwise, set to the first hole in the bottom row
                     current = [1, 0]
+
+            if self.gameboard[current[0]][current[1]] is None:
+                if current[0] == 0 and direction == 1:
+                    current = [1, 7]
+                elif current[0] == 0 and direction == -1:
+                    current = [1, 0]
+                elif current[0] == 1 and direction == 1:
+                    current = [0, 0]
+                else:
+                    current = [1, 1]
 
             self.gameboard[current[0]][current[1]] += 1
             print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
