@@ -1,6 +1,5 @@
 import numpy
 
-
 class Gameboard:
 
     def __init__(self):
@@ -12,7 +11,7 @@ class Gameboard:
 
         return str(self.gameboard[0]) + "\n" + str(self.gameboard[1])
 
-    def inWrongStore(self, current, direction, player)
+    def inWrongStore(self, current, direction, player):
         if player == 0 and current == [1, 7]:  # If player zero lands on player one's store, skip it
             if direction == 1:  # If approaching clockwise, set to the first hole in the top row
                 current = [1, 6]
