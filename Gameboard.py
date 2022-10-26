@@ -18,49 +18,48 @@ class Gameboard:
         current = [(int)(player), (int)(index)]
         self.gameboard[(int)(player)][(int)(index)] = 0
         for i in range(count):
+            print("current = " + str(current) + " direction = " + str(direction))
 
-            if player == 0:  # Player zero corresponds to starting from the top row
-                if current == [0][0]:  # If player zero lands on player one's store, skip it
-                    if direction == 1:  # If approaching clockwise, set to the first hole in the top row
-                        current = [0][1]
-                    else:  # If approaching counterclockwise, set to the first hole in the bottom row
-                        current = [1][1]
-                if direction == -1:  # Counterclockwise
-                    if current[1] < 0:  # If the top left end is reached, set to the beginning of bottom row
-                        current = [1, 0]
-                    else:  # If the top left end is not reached, continue counterclockwise
-                        current[1] -= 1
-                else:  # Clockwise
-                    if current[1] > 6:  # If the top right end is reached, set to the end of bottom row
-                        current = [1, 7]
-                    else:  # If the top right end is not reached, continue clockwise
-                        current[1] += 1
-            else:  # Player one corresponds to starting from the bottom row
-                if current == [1][7]:  # If player zero lands on player one's store, skip it
-                    if direction == 1:  # If approaching clockwise, set to the first hole in the top row
-                        current = [1][6]
-                    else:  # If approaching counterclockwise, set to the first hole in the bottom row
-                        current = [0][6]
-                if direction == -1:  # Counterclockwise
-                    if current[1] < 0:
-                        current = [0, 0]
-                    else:
-                        current[1] -= 1
-                else:  # Clockwise
-                    if current[1] > 6:
-                        current = [0, 7]
-                    else:
-                        current[1] += 1
+            if direction == -1:  # Counterclockwise
+                if current == [0, 0]:  # If the top left end is reached, set to the beginning of bottom row
+                    current = [1, 0]
+                elif current == [0, 7]:  # If the bottom right end is reached, set to top right
+                    current = [1, 7]
+                elif current[0] == 0:
+                    current[1] -= 1
+                elif current[0] == 1:
+                    current[1] += 1
+            else:  # Clockwise
+                if current == [1, 0]:  # If the top right end is reached, set to the end of bottom row
+                    current = [0, 1]
+                elif current == [0, 7]:  # If the bottom left end is reached, set to top left
+                    current = [1, 7]
+                elif current[0] == 0:  # If the top right end is not reached, continue clockwise
+                    current[1] += 1
+                elif current[0] == 1:  # If the top right end is not reached, continue clockwise
+                    current[1] -= 1
 
+            print(str(current) + " Before add")
             if self.gameboard[current[0]][current[1]] is None:
                 if current[0] == 0 and direction == 1:
-                    current = [1][7]
+                    current = [1, 7]
                 elif current[0] == 0 and direction == -1:
-                    current = [1][1]
+                    current = [1, 0]
                 elif current[0] == 1 and direction == 1:
-                    current = [0][0]
+                    current = [0, 0]
                 else:
-                    current = [0][6]
+                    current = [1, 1]
+
+            if player == 0 and current == [1, 7]:  # If player zero lands on player one's store, skip it
+                if direction == 1:  # If approaching clockwise, set to the first hole in the top row
+                    current = [1, 6]
+                else:  # If approaching counterclockwise, set to the first hole in the bottom row
+                    current = [0, 7]
+            if player == 1 and current == [0, 0]:  # If player zero lands on player one's store, skip it
+                if direction == 1:  # If approaching clockwise, set to the first hole in the top row
+                    current = [0, 1]
+                else:  # If approaching counterclockwise, set to the first hole in the bottom row
+                    current = [1, 0]
 
             self.gameboard[current[0]][current[1]] += 1
             print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
