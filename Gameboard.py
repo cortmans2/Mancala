@@ -37,8 +37,8 @@ class Gameboard:
             if direction == -1:  # Counterclockwise
                 if current == [0, 0]:  # If the top left end is reached, set to the beginning of bottom row
                     current = [1, 0]
-                elif current == [0, 7]:  # If the bottom right end is reached, set to top right
-                    current = [1, 7]
+                elif current == [1, 7]:  # If the bottom right end is reached, set to top right
+                    current = [0, 7]
                 elif current[0] == 0:
                     current[1] -= 1
                 elif current[0] == 1:
