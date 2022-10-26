@@ -12,17 +12,20 @@ class Gameboard:
         return str(self.gameboard[0]) + "\n" + str(self.gameboard[1])
 
     def inWrongStore(self, current, direction, player):
+        print("ran method")
+        print("current = " + str(current))
         if player == 0 and current == [1, 7]:  # If player zero lands on player one's store, skip it
             if direction == 1:  # If approaching clockwise, set to the first hole in the top row
                 current = [1, 6]
             else:  # If approaching counterclockwise, set to the first hole in the bottom row
                 current = [0, 7]
         if player == 1 and current == [0, 0]:  # If player zero lands on player one's store, skip it
+            print("store reached")
             if direction == 1:  # If approaching clockwise, set to the first hole in the top row
                 current = [0, 1]
             else:  # If approaching counterclockwise, set to the first hole in the bottom row
                 current = [1, 0]
-
+        return current
     def sow(self, index, direction, player, playerCallbackReference):
 
         count = self.gameboard[(int)(player)][(int)(index)]
@@ -52,7 +55,7 @@ class Gameboard:
 
             print(str(current) + " Before add")
 
-            self.inWrongStore(current, direction, player)
+            current = self.inWrongStore(current, direction, player)
 
             if self.gameboard[current[0]][current[1]] is None:
                 if current[0] == 0 and direction == 1:
@@ -64,7 +67,7 @@ class Gameboard:
                 else:
                     current = [1, 1]
 
-            self.inWrongStore(current, direction, player)
+            current = self.inWrongStore(current, direction, player)
 
             self.gameboard[current[0]][current[1]] += 1
             print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
