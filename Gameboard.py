@@ -12,15 +12,15 @@ class Gameboard:
         return str(self.gameboard[0]) + "\n" + str(self.gameboard[1])
 
     def inWrongStore(self, current, direction, player):
-        print("ran method")
-        print("current = " + str(current))
+        #print("ran method")
+        #print("current = " + str(current))
         if player == 0 and current == [1, 7]:  # If player zero lands on player one's store, skip it
             if direction == 1:  # If approaching clockwise, set to the first hole in the top row
                 current = [1, 6]
             else:  # If approaching counterclockwise, set to the first hole in the bottom row
                 current = [0, 7]
         if player == 1 and current == [0, 0]:  # If player zero lands on player one's store, skip it
-            print("store reached")
+            #print("store reached")
             if direction == 1:  # If approaching clockwise, set to the first hole in the top row
                 current = [0, 1]
             else:  # If approaching counterclockwise, set to the first hole in the bottom row
@@ -32,7 +32,7 @@ class Gameboard:
         current = [(int)(player), (int)(index)]
         self.gameboard[(int)(player)][(int)(index)] = 0
         for i in range(count):
-            print("current = " + str(current) + " direction = " + str(direction))
+            #print("current = " + str(current) + " direction = " + str(direction))
 
             if direction == -1:  # Counterclockwise
                 if current == [0, 0]:  # If the top left end is reached, set to the beginning of bottom row
@@ -53,12 +53,12 @@ class Gameboard:
                 elif current[0] == 1:  # If the top right end is not reached, continue clockwise
                     current[1] -= 1
 
-            print(str(current) + " Before add")
+            #print(str(current) + " Before add")
 
             current = self.inWrongStore(current, direction, player)
 
             if self.gameboard[current[0]][current[1]] is None:
-                print("none")
+                #print("none")
                 if current[0] == 0 and direction == 1:
                     current = [1, 7]
                 elif current[0] == 0 and direction == -1:
@@ -71,7 +71,9 @@ class Gameboard:
             current = self.inWrongStore(current, direction, player)
 
             self.gameboard[current[0]][current[1]] += 1
-            print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
+            #print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
+
+        print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]) + "\n")
 
         # handle moving again
         if current[1] == 0 or current[1] == 7:
