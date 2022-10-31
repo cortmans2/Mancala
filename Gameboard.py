@@ -109,3 +109,30 @@ class Gameboard:
 #g1 = Gameboard()
 #print(g1)
 #g1.sow(6, -1, 0)
+
+
+
+# Alternative way of determining the next index to go to.
+# To implement, just set 'current' inside of sow to getNextIndex()
+def getNextIndex(self, player, dir, currentI):
+
+    # should never be sent [1, 7]
+    p1d1NextIndexArray = [[[0,1], [0, 2], [0,3], [0,4], [0,5], [0,6], [1,6], None],
+                          [None, [0,0], [1,1], [1,2], [1,3], [1,4], [1,5], [1,6]]]
+    # should never be sent [1, 7]
+    p1dn1NextIndexArray = [[[1,1], [0, 0], [0,1], [0,2], [0,3], [0,4], [0,5], None],
+                          [None, [1,2], [1,3], [1,4], [1,5], [1,6], [0,6], [0,6]]]
+    # should never be sent [0,0]
+    p2d1NextIndexArray = [[[1,1], [1, 1], [0,1], [0,2], [0,3], [0,4], [0,5], None],
+                          [None, [1,2], [1,3], [1,4], [1,5], [1,6], [1,7], [0,6]]]
+    # should never be sent [0,0]
+    p2dn1NextIndexArray = [[[0,1], [0, 2], [0,3], [0,4], [0,5], [0,6], [1,7], None],
+                          [None, [0,1], [1,1], [1,2], [1,3], [1,4], [1,5], [1,6]]]
+    if player == 0 and dir == 1:
+        return p1d1NextIndexArray[currentI]
+    elif player == 0 and dir == -1:
+        return p1dn1NextIndexArray[currentI]
+    elif player == 1 and dir == 1:
+        return p2d1NextIndexArray[currentI]
+    elif player == 1 and dir == -1:
+        return p2dn1NextIndexArray[currentI]
