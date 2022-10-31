@@ -136,3 +136,4 @@ def getNextIndex(self, player, dir, currentI):
         return p2d1NextIndexArray[currentI]
     elif player == 1 and dir == -1:
         return p2dn1NextIndexArray[currentI]
+
