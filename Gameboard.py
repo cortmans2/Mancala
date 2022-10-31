@@ -77,8 +77,9 @@ class Gameboard:
 
         # handle moving again
         if current[1] == 0 or current[1] == 7:
-            print("MOVE AGAIN")
-            playerCallbackReference.Move()
+            if self.isGameOver() == -1:
+                print("MOVE AGAIN")
+                playerCallbackReference.Move()
 
         # handles capturing
         if player == 0 and current[0] == 0 and self.gameboard[0][current[1]] == 1 and self.gameboard[1][current[1]] != 0:
@@ -87,16 +88,18 @@ class Gameboard:
             self.gameboard[1][current[1]] = 0
             self.gameboard[0][0] += seedsToCapture
             print("CAPTURED", seedsToCapture, "SEEDS")
+            print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]))
         if player == 1 and current[0] == 1 and self.gameboard[1][current[1]] == 1 and self.gameboard[0][current[1]] != 0:
             seedsToCapture = self.gameboard[0][current[1]] + 1
             self.gameboard[1][current[1]] = 0
             self.gameboard[0][current[1]] = 0
             self.gameboard[1][7] += seedsToCapture
             print("CAPTURED", seedsToCapture, "SEEDS")
-
+            print(str(self.gameboard[0]) + "\n" + str(self.gameboard[1]))
 
 
     def isGameOver(self):
+
         # get how many seeds are in each player's row (not store)
         player0RemainingSeeds = 0
         for i in range(1, 7):
@@ -112,17 +115,12 @@ class Gameboard:
         if int(player0RemainingSeeds) > 0 and int(player1RemainingSeeds) > 0:
             return -1
         # otherwise return whoever has more in their store
-        self.gameboard[0][0] += player0RemainingSeeds
-        self.gameboard[1][7] += player1RemainingSeeds
-        if self.gameboard[0][0] > self.gameboard[1][7]:
+        player0Total = self.gameboard[0][0] + player0RemainingSeeds
+        player1Total = self.gameboard[1][7] + player1RemainingSeeds
+        if player0Total > player1Total:
             return 0
         else:
             return 1
-
-
-
-
-
 
 #g1 = Gameboard()
 #print(g1)

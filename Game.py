@@ -30,4 +30,4 @@ class Game:
             # reverses which player will move next round
             self.playerToMove = self.player1 if self.playerToMove.num == 0 else self.player0  # switches players turn
             #print("playerToMove: " + (str)(self.playerToMove.num))
-        print("The Game Is Over")
+        print("The Game Is Over, Player", int(self.gameboard.isGameOver() + 1), "WINS! ")
