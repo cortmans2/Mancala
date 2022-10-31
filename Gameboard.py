@@ -58,6 +58,7 @@ class Gameboard:
             current = self.inWrongStore(current, direction, player)
 
             if self.gameboard[current[0]][current[1]] is None:
+                print("none")
                 if current[0] == 0 and direction == 1:
                     current = [1, 7]
                 elif current[0] == 0 and direction == -1:
