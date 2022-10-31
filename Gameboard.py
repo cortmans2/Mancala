@@ -62,7 +62,7 @@ class Gameboard:
                 if current[0] == 0 and direction == 1:
                     current = [1, 7]
                 elif current[0] == 0 and direction == -1:
-                    current = [1, 0]
+                    current = [1, 6]
                 elif current[0] == 1 and direction == 1:
                     current = [0, 0]
                 else:
